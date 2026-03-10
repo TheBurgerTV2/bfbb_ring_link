@@ -754,19 +754,20 @@ class BattleForBikiniBottom(World):
         last_level = None
         min_incs = [0, 3, 5]
         last_cost = 1
-        level_inc_min = min_incs[self.options.randomize_gate_cost.value - 1]
-        level_inc_max = 8
-        if self.options.include_socks.value:
-            level_inc_max += 6
-        if self.options.include_level_items.value:
-            level_inc_max += 3
-        if self.options.include_purple_so.value:
-            level_inc_max += 1
-        if self.options.randomize_gate_cost.value == 3:
-            level_inc_max = round(level_inc_max * 1.35)
-        elif self.options.randomize_gate_cost.value == 1:
-            level_inc_max = round(level_inc_max * 0.75)
         for v in self.level_order:
+            level_inc_min = min_incs[self.options.randomize_gate_cost.value - 1]
+            level_inc_max = 8
+            if self.options.include_socks.value:
+                level_inc_max += 6
+            if self.options.include_level_items.value:
+                level_inc_max += 3
+            if self.options.include_purple_so.value:
+                level_inc_max += 1
+            if self.options.randomize_gate_cost.value == 3:
+                level_inc_max = round(level_inc_max * 1.35)
+            elif self.options.randomize_gate_cost.value == 1:
+                level_inc_max = round(level_inc_max * 0.75)
+        
             # set max increment after boss to 1/2
             if last_level is not None and last_level in [ConnectionNames.hub1_b1, ConnectionNames.hub2_b2]:
                 level_inc_max = 2 if self.options.include_skills else 1
